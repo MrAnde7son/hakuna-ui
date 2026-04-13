@@ -1,0 +1,152 @@
+/* ────────────────────────────────────────────────────────────
+   @hakuna/ui — Base Styles
+   Import AFTER colors.css for global resets and utilities.
+   ──────────────────────────────────────────────────────────── */
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--hk-font-sans);
+  background: var(--hk-bg);
+  color: var(--hk-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-synthesis-weight: none;
+  line-height: 1.5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  color: var(--hk-text);
+}
+
+/* ── Focus ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--hk-ring);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--hk-neutral-200);
+  border-radius: 6px;
+  border: 2px solid var(--hk-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hk-neutral-300);
+}
+
+/* ── Utility classes ────────────────────────────────────────── */
+.hk-font-display { font-family: var(--hk-font-display); letter-spacing: -0.02em; }
+.hk-font-mono    { font-family: var(--hk-font-mono); }
+
+.hk-grid-bg {
+  background-image:
+    linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Responsive utilities ──────────────────────────────────── */
+
+/* Auto-responsive grid: fills columns at --hk-grid-min (default 280px) */
+.hk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--hk-grid-min, 280px), 1fr));
+  gap: var(--hk-grid-gap, 16px);
+}
+
+/* Stack: vertical on mobile, horizontal on md+ */
+.hk-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hk-stack-gap, 16px);
+}
+@media (min-width: 768px) {
+  .hk-stack { flex-direction: row; }
+}
+
+/* Container */
+.hk-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 768px) {
+  .hk-container { padding: 0 24px; }
+}
+@media (min-width: 1280px) {
+  .hk-container { padding: 0 32px; }
+}
+
+/* Responsive text sizing */
+.hk-text-hero {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.hk-text-title {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  line-height: 1.3;
+  font-weight: 700;
+}
+.hk-text-body {
+  font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
+  line-height: 1.5;
+}
+
+/* Hide/show at breakpoints */
+.hk-hide-mobile  { display: revert; }
+.hk-show-mobile  { display: none; }
+@media (max-width: 767px) {
+  .hk-hide-mobile  { display: none !important; }
+  .hk-show-mobile  { display: revert !important; }
+}
+
+/* Horizontal scroll container for tabs, filter bars, etc. */
+.hk-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.hk-scroll-x::-webkit-scrollbar { display: none; }
+
+/* ── Keyframe animations ────────────────────────────────────── */
+@keyframes hk-toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hk-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes hk-pulse-dot {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1); }
+}
+@keyframes hk-fill-bar {
+  from { width: 0%; }
+}
+@keyframes hk-slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes hk-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}

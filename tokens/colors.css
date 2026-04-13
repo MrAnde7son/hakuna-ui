@@ -1,0 +1,143 @@
+/* ────────────────────────────────────────────────────────────
+   @hakuna/ui — Design Tokens (CSS Custom Properties)
+   Single source of truth for all Hakuna projects.
+   Import this file once in your app's entry point.
+   ──────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Core palette ─────────────────────────────────────────── */
+  --hk-primary-50:  #f0f7ff;
+  --hk-primary-100: #e0efff;
+  --hk-primary-200: #b9dfff;
+  --hk-primary-300: #7cc6ff;
+  --hk-primary-400: #36a9ff;
+  --hk-primary-500: #0c8fff;
+  --hk-primary-600: #006fdf;
+  --hk-primary-700: #0058b4;
+  --hk-primary-800: #004b94;
+  --hk-primary-900: #06407a;
+  --hk-primary-950: #031a3a;
+
+  --hk-accent-50:  #fdf8ed;
+  --hk-accent-100: #faefd0;
+  --hk-accent-200: #f5dc9c;
+  --hk-accent-300: #efc262;
+  --hk-accent-400: #eaa93a;
+  --hk-accent-500: #e08d1f;
+  --hk-accent-600: #c66d16;
+  --hk-accent-700: #a45017;
+  --hk-accent-800: #853f19;
+  --hk-accent-900: #6d3418;
+  --hk-accent-950: #3f1b09;
+
+  --hk-neutral-50:  #f6f7f9;
+  --hk-neutral-100: #edeff3;
+  --hk-neutral-200: #d6dae3;
+  --hk-neutral-300: #b1b8c7;
+  --hk-neutral-400: #8690a5;
+  --hk-neutral-500: #67718a;
+  --hk-neutral-600: #525a72;
+  --hk-neutral-700: #43495d;
+  --hk-neutral-800: #393e4e;
+  --hk-neutral-900: #202330;
+  --hk-neutral-950: #12141c;
+
+  /* ── Semantic tokens (light) ──────────────────────────────── */
+  --hk-bg:            #ffffff;
+  --hk-bg-muted:      #f6f7f9;
+  --hk-bg-subtle:     #f1f4f8;
+  --hk-surface:       #ffffff;
+  --hk-card:          #ffffff;
+  --hk-popover:       #ffffff;
+
+  --hk-border:        #e4e8ef;
+  --hk-border-strong: #d1d7e0;
+  --hk-input:         #e4e8ef;
+  --hk-ring:          rgba(0, 111, 223, 0.25);
+
+  --hk-text:          #0f172a;
+  --hk-text-secondary:#64748b;
+  --hk-text-muted:    #94a3b8;
+
+  --hk-primary:       var(--hk-primary-700);
+  --hk-primary-fg:    #ffffff;
+  --hk-primary-hover: var(--hk-primary-800);
+
+  --hk-danger:        #ef4444;
+  --hk-warning:       #f59e0b;
+  --hk-success:       #10b981;
+  --hk-info:          #0ea5e9;
+
+  --hk-danger-subtle:  #fef2f2;
+  --hk-warning-subtle: #fffbeb;
+  --hk-success-subtle: #d1fae5;
+  --hk-info-subtle:    #f0f9ff;
+
+  /* ── Severity tokens (light) ──────────────────────────────── */
+  --hk-sev-critical-bg: #fef2f2; --hk-sev-critical-text: #991b1b; --hk-sev-critical-border: #fca5a5;
+  --hk-sev-high-bg: #fff7ed;     --hk-sev-high-text: #9a3412;     --hk-sev-high-border: #fdba74;
+  --hk-sev-medium-bg: #fffbeb;   --hk-sev-medium-text: #92400e;   --hk-sev-medium-border: #fcd34d;
+  --hk-sev-low-bg: #f0fdf4;      --hk-sev-low-text: #166534;      --hk-sev-low-border: #86efac;
+  --hk-sev-info-bg: #f0f9ff;     --hk-sev-info-text: #0369a1;     --hk-sev-info-border: #7dd3fc;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --hk-shadow-sm:   0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --hk-shadow-md:   0 4px 12px -2px rgba(16, 24, 40, 0.08), 0 2px 6px -2px rgba(16, 24, 40, 0.05);
+  --hk-shadow-lg:   0 10px 40px rgba(16, 24, 40, 0.12);
+  --hk-shadow-glow: 0 0 0 1px rgba(0, 111, 223, 0.18), 0 8px 24px -8px rgba(0, 111, 223, 0.35);
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --hk-font-sans:    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --hk-font-mono:    'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --hk-font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Radii ────────────────────────────────────────────────── */
+  --hk-radius-sm: 6px;
+  --hk-radius-md: 10px;
+  --hk-radius-lg: 16px;
+  --hk-radius-full: 9999px;
+}
+
+/* ── Dark theme ─────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --hk-bg:            #0d1117;
+  --hk-bg-muted:      #090c10;
+  --hk-bg-subtle:     #161b22;
+  --hk-surface:       #161b22;
+  --hk-card:          #161b22;
+  --hk-popover:       #1c2128;
+
+  --hk-border:        #30363d;
+  --hk-border-strong: #3d444d;
+  --hk-input:         #30363d;
+  --hk-ring:          rgba(88, 166, 255, 0.35);
+
+  --hk-text:          #e6edf3;
+  --hk-text-secondary:#8b949e;
+  --hk-text-muted:    #6e7681;
+
+  --hk-primary:       #58a6ff;
+  --hk-primary-fg:    #0d1117;
+  --hk-primary-hover: #79b8ff;
+
+  --hk-danger:        #f85149;
+  --hk-warning:       #e3b341;
+  --hk-success:       #3fb950;
+  --hk-info:          #58a6ff;
+
+  --hk-danger-subtle:  #2d1515;
+  --hk-warning-subtle: #1a1200;
+  --hk-success-subtle: #0a1e0f;
+  --hk-info-subtle:    #0c1a2e;
+
+  --hk-sev-critical-bg: #450a0a; --hk-sev-critical-text: #fca5a5; --hk-sev-critical-border: #991b1b;
+  --hk-sev-high-bg: #431407;     --hk-sev-high-text: #fdba74;     --hk-sev-high-border: #9a3412;
+  --hk-sev-medium-bg: #451a03;   --hk-sev-medium-text: #fcd34d;   --hk-sev-medium-border: #92400e;
+  --hk-sev-low-bg: #1a2e05;      --hk-sev-low-text: #86efac;      --hk-sev-low-border: #166534;
+  --hk-sev-info-bg: #0c1a2e;     --hk-sev-info-text: #7dd3fc;     --hk-sev-info-border: #0369a1;
+
+  --hk-shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --hk-shadow-md:   0 4px 12px rgba(0, 0, 0, 0.4);
+  --hk-shadow-lg:   0 10px 40px rgba(0, 0, 0, 0.5);
+  --hk-shadow-glow: 0 0 0 1px rgba(88, 166, 255, 0.2), 0 8px 24px -8px rgba(88, 166, 255, 0.3);
+}

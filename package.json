@@ -1,0 +1,42 @@
+{
+  "name": "@hakunahq/ui",
+  "version": "0.4.0",
+  "description": "Unified design system for the Hakuna product family",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./tokens/colors.css": "./tokens/colors.css",
+    "./tokens/base.css": "./tokens/base.css",
+    "./tokens/tailwind-preset": "./tokens/tailwind-preset.js",
+    "./tokens/breakpoints": "./tokens/breakpoints.js",
+    "./hooks/useBreakpoint": "./hooks/useBreakpoint.js",
+    "./assets/*": "./assets/*",
+    "./components/*": "./components/*.jsx"
+  },
+  "files": [
+    "index.js",
+    "tokens/",
+    "hooks/",
+    "components/",
+    "assets/"
+  ],
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "lucide-react": ">=0.300.0"
+  },
+  "keywords": [
+    "hakuna",
+    "design-system",
+    "react",
+    "tailwind",
+    "ui"
+  ],
+  "author": "Hakuna HQ",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
