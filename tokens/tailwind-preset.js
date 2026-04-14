@@ -64,18 +64,22 @@ export default {
         },
 
         // ── Semantic aliases ───────────────────────────
-        bg:             'var(--hk-bg)',
-        'bg-muted':     'var(--hk-bg-muted)',
-        'bg-subtle':    'var(--hk-bg-subtle)',
-        surface:        'var(--hk-surface)',
-        card:           'var(--hk-card)',
-        border:         'var(--hk-border)',
-        'border-strong':'var(--hk-border-strong)',
-        input:          'var(--hk-input)',
-        ring:           'var(--hk-ring)',
-        muted:          'var(--hk-text-muted)',
-        'text-primary': 'var(--hk-text)',
-        'text-secondary':'var(--hk-text-secondary)',
+        bg:               'var(--hk-bg)',
+        'bg-muted':       'var(--hk-bg-muted)',
+        'bg-subtle':      'var(--hk-bg-subtle)',
+        surface:          'var(--hk-surface)',
+        card:             'var(--hk-card)',
+        fill:             'var(--hk-fill)',
+        'fill-hover':     'var(--hk-fill-hover)',
+        'fill-active':    'var(--hk-fill-active)',
+        'border-subtle':  'var(--hk-border-subtle)',
+        border:           'var(--hk-border)',
+        'border-strong':  'var(--hk-border-strong)',
+        input:            'var(--hk-input)',
+        ring:             'var(--hk-ring)',
+        muted:            'var(--hk-text-muted)',
+        'text-primary':   'var(--hk-text)',
+        'text-secondary': 'var(--hk-text-secondary)',
 
         accent: {
           DEFAULT: 'var(--hk-primary)',
@@ -101,6 +105,7 @@ export default {
       },
 
       boxShadow: {
+        xs:   'var(--hk-shadow-xs)',
         sm:   'var(--hk-shadow-sm)',
         card: 'var(--hk-shadow-sm)',
         md:   'var(--hk-shadow-md)',
@@ -108,7 +113,9 @@ export default {
         lift: 'var(--hk-shadow-md)',
         lg:   'var(--hk-shadow-lg)',
         pop:  'var(--hk-shadow-lg)',
+        xl:   'var(--hk-shadow-xl)',
         glow: 'var(--hk-shadow-glow)',
+        focus:'var(--hk-shadow-focus)',
         soft: 'var(--hk-shadow-sm)',
       },
 
