@@ -20,6 +20,9 @@ export { Modal } from './components/Modal.jsx'
 export { Sidebar } from './components/Sidebar.jsx'
 export { Pagination } from './components/Pagination.jsx'
 
+// ── Navigation ─────────────────────────────────────────────
+export { NavBar, NavHamburger, MobileTopBar } from './components/NavBar.jsx'
+
 // ── Data Display ────────────────────────────────────────────
 export { Card, StatCard } from './components/Card.jsx'
 export { Table } from './components/Table.jsx'

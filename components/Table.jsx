@@ -4,18 +4,18 @@
  * Features:
  *   - Sortable columns (onSort / sortBy / sortOrder)
  *   - Resizable columns (resizable prop — drag column borders)
+ *   - Draggable columns (draggable prop — reorder by drag-and-drop)
  *   - Mobile card layout (< 768px, opt-out with mobileCard={false})
  *   - Expandable rows (renderRowExtra)
  *   - Empty state (emptyMessage or emptyState node)
  *
  * Usage:
  *   <Table
- *     columns={[
- *       { key: 'name', label: 'Name', width: 200, sortable: true, resizable: true },
- *       { key: 'score', label: 'Score', width: 120, sortable: true },
- *     ]}
+ *     columns={cols}
  *     rows={data}
  *     resizable
+ *     draggable
+ *     onColumnsReorder={(newCols) => setCols(newCols)}
  *     onSort={handleSort}
  *     sortBy="score"
  *     sortOrder="desc"
@@ -31,9 +31,7 @@ function useColumnResize(columns, enabled) {
     columns.forEach(col => { if (col.width) w[col.key] = col.width })
     return w
   })
-  const dragRef = useRef(null)
 
-  // Sync if columns change
   useEffect(() => {
     setWidths(prev => {
       const next = { ...prev }
@@ -44,32 +42,78 @@ function useColumnResize(columns, enabled) {
     })
   }, [columns])
 
-  const onMouseDown = useCallback((colKey, e) => {
+  const onResizeDown = useCallback((colKey, e) => {
     if (!enabled) return
     e.preventDefault()
     const startX = e.clientX
     const startW = widths[colKey] || 120
 
     const onMove = (ev) => {
-      const delta = ev.clientX - startX
-      const newW = Math.max(60, startW + delta)
+      const newW = Math.max(60, startW + ev.clientX - startX)
       setWidths(prev => ({ ...prev, [colKey]: newW }))
     }
-
     const onUp = () => {
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       document.body.style.cursor = ''
       document.body.style.userSelect = ''
     }
-
     document.body.style.cursor = 'col-resize'
     document.body.style.userSelect = 'none'
     document.addEventListener('mousemove', onMove)
     document.addEventListener('mouseup', onUp)
   }, [enabled, widths])
 
-  return { widths, onMouseDown }
+  return { widths, onResizeDown }
+}
+
+// ── Drag-to-reorder hook ─────────────────────────────────────
+function useColumnDrag(columns, enabled, onColumnsReorder) {
+  const [dragKey, setDragKey] = useState(null)
+  const [overKey, setOverKey] = useState(null)
+
+  const onDragStart = useCallback((key, e) => {
+    if (!enabled) return
+    setDragKey(key)
+    e.dataTransfer.effectAllowed = 'move'
+    // Ghost image: use the header cell itself
+    e.dataTransfer.setData('text/plain', key)
+  }, [enabled])
+
+  const onDragOver = useCallback((key, e) => {
+    if (!enabled || !dragKey || key === dragKey) return
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+    setOverKey(key)
+  }, [enabled, dragKey])
+
+  const onDragLeave = useCallback(() => {
+    setOverKey(null)
+  }, [])
+
+  const onDrop = useCallback((targetKey, e) => {
+    e.preventDefault()
+    if (!dragKey || dragKey === targetKey) { setDragKey(null); setOverKey(null); return }
+
+    const fromIdx = columns.findIndex(c => c.key === dragKey)
+    const toIdx = columns.findIndex(c => c.key === targetKey)
+    if (fromIdx < 0 || toIdx < 0) { setDragKey(null); setOverKey(null); return }
+
+    const next = [...columns]
+    const [moved] = next.splice(fromIdx, 1)
+    next.splice(toIdx, 0, moved)
+    onColumnsReorder?.(next)
+
+    setDragKey(null)
+    setOverKey(null)
+  }, [columns, dragKey, onColumnsReorder])
+
+  const onDragEnd = useCallback(() => {
+    setDragKey(null)
+    setOverKey(null)
+  }, [])
+
+  return { dragKey, overKey, onDragStart, onDragOver, onDragLeave, onDrop, onDragEnd }
 }
 
 // ── Table component ──────────────────────────────────────────
@@ -85,11 +129,14 @@ export function Table({
   renderRowExtra,
   mobileCard = true,
   resizable = false,
+  draggable = false,
+  onColumnsReorder,
   className,
 }) {
   const bp = useBreakpoint()
   const useMobileCards = bp.isMobile && mobileCard
-  const { widths, onMouseDown } = useColumnResize(columns, resizable && !useMobileCards)
+  const { widths, onResizeDown } = useColumnResize(columns, resizable && !useMobileCards)
+  const drag = useColumnDrag(columns, draggable && !useMobileCards, onColumnsReorder)
 
   // ── Mobile card view ─────────────────────────────────────
   if (useMobileCards) {
@@ -162,10 +209,19 @@ export function Table({
               const isSorted = sortBy === col.key
               const canSort = col.sortable && onSort
               const colResizable = resizable && col.resizable !== false
+              const isDragging = drag.dragKey === col.key
+              const isDropTarget = drag.overKey === col.key
               const w = widths[col.key]
+
               return (
                 <th
                   key={col.key}
+                  draggable={draggable && col.draggable !== false}
+                  onDragStart={(e) => drag.onDragStart(col.key, e)}
+                  onDragOver={(e) => drag.onDragOver(col.key, e)}
+                  onDragLeave={drag.onDragLeave}
+                  onDrop={(e) => drag.onDrop(col.key, e)}
+                  onDragEnd={drag.onDragEnd}
                   onClick={canSort ? () => onSort(col.key) : undefined}
                   style={{
                     padding: '10px 12px', textAlign: 'left', fontWeight: 600,
@@ -173,12 +229,27 @@ export function Table({
                     fontSize: 11, textTransform: 'uppercase',
                     letterSpacing: '0.05em', whiteSpace: 'nowrap',
                     width: w || col.width,
-                    cursor: canSort ? 'pointer' : 'default',
+                    cursor: draggable ? 'grab' : canSort ? 'pointer' : 'default',
                     userSelect: 'none',
                     position: 'relative',
+                    opacity: isDragging ? 0.4 : 1,
+                    // Drop target indicator
+                    ...(isDropTarget && {
+                      borderLeft: '2px solid var(--hk-primary)',
+                    }),
+                    transition: 'opacity 0.15s',
                   }}
                 >
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    {/* Drag grip icon */}
+                    {draggable && col.draggable !== false && (
+                      <span style={{
+                        display: 'inline-flex', opacity: 0.3, marginRight: 2,
+                        fontSize: 10, lineHeight: 1, letterSpacing: '0.02em',
+                      }} title="Drag to reorder">
+                        ⠿
+                      </span>
+                    )}
                     {col.label}
                     {canSort && (
                       <span style={{ fontSize: 10, opacity: isSorted ? 1 : 0.3 }}>
@@ -186,15 +257,15 @@ export function Table({
                       </span>
                     )}
                   </span>
+
                   {/* Resize handle */}
                   {colResizable && ci < columns.length - 1 && (
                     <span
-                      onMouseDown={(e) => { e.stopPropagation(); onMouseDown(col.key, e) }}
+                      onMouseDown={(e) => { e.stopPropagation(); onResizeDown(col.key, e) }}
                       style={{
                         position: 'absolute', right: 0, top: 0, bottom: 0,
                         width: 6, cursor: 'col-resize',
-                        background: 'transparent',
-                        zIndex: 1,
+                        background: 'transparent', zIndex: 1,
                         transition: 'background 0.15s',
                       }}
                       onMouseEnter={e => e.currentTarget.style.background = 'var(--hk-primary-200)'}

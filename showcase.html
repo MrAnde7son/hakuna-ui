@@ -1566,7 +1566,165 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       22. SIDEBAR / DETAIL PANEL (v0.4)
+       22. NAVIGATION BAR (v0.5)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Navigation Bar <span style="font-size:10px;color:var(--hk-success);font-weight:700;margin-left:8px">v0.5</span></div>
+    <p style="font-size:13px;color:var(--hk-text-secondary);margin-bottom:16px;">
+      Unified sidebar nav matching all four Hakuna projects. Desktop: fixed 220px sidebar (56px collapsed). Mobile: hamburger + slide-out drawer. Supports grouped sections, badges, user menu, and dark variant.
+    </p>
+
+    <!-- Desktop: default variant preview -->
+    <div style="margin-bottom:20px;">
+      <div class="subsection-title">Default variant (desktop)</div>
+      <div style="display:flex;gap:0;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);overflow:hidden;height:380px;background:var(--hk-bg-muted);">
+        <!-- Simulated sidebar -->
+        <div style="width:220px;flex-shrink:0;background:var(--hk-bg);border-right:1px solid var(--hk-border);display:flex;flex-direction:column;font-size:13px;overflow:hidden;">
+          <!-- Logo -->
+          <div style="padding:16px 16px 12px;border-bottom:1px solid var(--hk-border);margin-bottom:8px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:24px;height:24px;background:#590202;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 40 40" width="14" height="14"><path d="M20 6c-8 0-14 6-14 14s6 14 14 14 14-6 14-14S28 6 20 6zm0 4c5.5 0 10 4.5 10 10H10c0-5.5 4.5-10 10-10z" fill="#fff"/></svg>
+              </div>
+              <span style="font-size:14px;font-weight:700;color:var(--hk-text);">Hakuna</span>
+            </div>
+            <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;margin-top:3px;color:var(--hk-text-muted);">Exposure Platform</div>
+          </div>
+          <!-- Nav items -->
+          <div style="flex:1;overflow-y:auto;padding:0 8px;display:flex;flex-direction:column;gap:1px;">
+            <div style="padding:7px 10px;border-radius:6px;background:var(--hk-primary-50);color:var(--hk-primary);font-weight:600;display:flex;align-items:center;gap:10px;position:relative;">
+              <span style="position:absolute;left:-2px;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:2px;background:var(--hk-primary);"></span>
+              <span style="font-size:16px;width:20px;text-align:center;">&#128202;</span> Dashboard
+            </div>
+            <div style="font-size:10px;font-weight:700;color:var(--hk-text-muted);text-transform:uppercase;letter-spacing:0.08em;padding:12px 10px 4px;">Exposure</div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;justify-content:space-between;">
+              <span style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;width:20px;text-align:center;">&#128737;</span> Findings</span>
+              <span style="font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px;background:var(--hk-bg-subtle);color:var(--hk-text-muted);font-family:var(--hk-font-mono);">142</span>
+            </div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:20px;text-align:center;">&#128421;</span> Assets
+            </div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:20px;text-align:center;">&#127919;</span> Campaigns
+            </div>
+            <div style="font-size:10px;font-weight:700;color:var(--hk-text-muted);text-transform:uppercase;letter-spacing:0.08em;padding:12px 10px 4px;">Intelligence</div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:20px;text-align:center;">&#129302;</span> AI Agents
+            </div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:20px;text-align:center;">&#128640;</span> Threat Intel
+            </div>
+            <div style="height:1px;background:var(--hk-border);margin:8px 0;"></div>
+            <div style="padding:7px 10px;border-radius:6px;color:var(--hk-text-muted);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:16px;width:20px;text-align:center;">&#9881;</span> Settings
+            </div>
+          </div>
+          <!-- Collapse toggle -->
+          <div style="padding:4px 8px;">
+            <div style="text-align:center;padding:6px;color:var(--hk-text-muted);font-size:14px;cursor:pointer;">«</div>
+          </div>
+          <!-- Footer -->
+          <div style="padding:10px 12px;border-top:1px solid var(--hk-border);display:flex;align-items:center;gap:8px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--hk-primary-100);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--hk-primary);">IM</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:12px;font-weight:600;color:var(--hk-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Itamar Mizrahi</div>
+              <div style="font-size:10px;color:var(--hk-text-muted);">Admin</div>
+            </div>
+          </div>
+        </div>
+        <!-- Simulated content area -->
+        <div style="flex:1;padding:20px;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;color:var(--hk-text-muted);font-size:12px;">
+            <div style="font-size:28px;margin-bottom:8px;opacity:0.3;">&#128196;</div>
+            Page content area<br/><span style="font-size:11px;">Sidebar pushes content to the right (margin-left: 220px)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark variant preview -->
+    <div style="margin-bottom:20px;">
+      <div class="subsection-title">Dark variant (gradient sidebar)</div>
+      <div style="display:flex;gap:0;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);overflow:hidden;height:300px;background:var(--hk-bg-muted);">
+        <div style="width:240px;flex-shrink:0;background:linear-gradient(to bottom,#06407a,#031a3a,#12141c);color:#fff;display:flex;flex-direction:column;font-size:13px;overflow:hidden;position:relative;">
+          <!-- Ambient glow -->
+          <div style="position:absolute;top:0;left:0;width:120px;height:120px;background:rgba(0,111,223,0.15);border-radius:50%;filter:blur(40px);pointer-events:none;"></div>
+          <!-- Logo -->
+          <div style="padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:8px;position:relative;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:32px;height:32px;background:linear-gradient(135deg,#36a9ff,#004b94);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 40 40" width="18" height="18"><path d="M20 6c-8 0-14 6-14 14s6 14 14 14 14-6 14-14S28 6 20 6zm0 4c5.5 0 10 4.5 10 10H10c0-5.5 4.5-10 10-10z" fill="#fff"/></svg>
+              </div>
+              <span style="font-size:15px;font-weight:600;letter-spacing:-0.01em;">Hakuna</span>
+            </div>
+            <div style="font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;margin-top:3px;color:rgba(255,255,255,0.45);">Investor Intel</div>
+          </div>
+          <!-- Nav items -->
+          <div style="flex:1;padding:0 10px;display:flex;flex-direction:column;gap:2px;">
+            <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;padding:4px 8px 6px;color:rgba(255,255,255,0.3);">Workspace</div>
+            <div style="padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.08);color:#fff;font-weight:500;display:flex;align-items:center;gap:10px;position:relative;">
+              <span style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:0 4px 4px 0;background:#eaa93a;"></span>
+              <span style="font-size:15px;width:20px;text-align:center;">&#128101;</span> Investors
+            </div>
+            <div style="padding:8px 12px;border-radius:8px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:15px;width:20px;text-align:center;">&#127919;</span> Strategy
+            </div>
+            <div style="padding:8px 12px;border-radius:8px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:15px;width:20px;text-align:center;">&#128200;</span> Timeline
+            </div>
+            <div style="padding:8px 12px;border-radius:8px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:10px;">
+              <span style="font-size:15px;width:20px;text-align:center;">&#9881;</span> Settings
+            </div>
+          </div>
+          <!-- Bottom info -->
+          <div style="margin:0 12px 12px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;font-weight:500;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#34d399;"></span> Enrichment live
+            </div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.4;">Signals refresh every 10s from public filings</div>
+          </div>
+        </div>
+        <div style="flex:1;padding:20px;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;color:var(--hk-text-muted);font-size:12px;">
+            <div style="font-size:28px;margin-bottom:8px;opacity:0.3;">&#127912;</div>
+            Dark variant for fundraiser / signal apps
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile preview -->
+    <div>
+      <div class="subsection-title">Mobile (hamburger + drawer)</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="width:220px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);overflow:hidden;">
+          <!-- Mobile top bar -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;height:44px;background:var(--hk-bg);border-bottom:1px solid var(--hk-border);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:32px;height:32px;border-radius:6px;border:1px solid var(--hk-border);background:var(--hk-card);display:flex;align-items:center;justify-content:center;">
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="var(--hk-text)" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="5" x2="15" y2="5"/><line x1="3" y1="9" x2="15" y2="9"/><line x1="3" y1="13" x2="15" y2="13"/></svg>
+              </div>
+              <span style="font-size:13px;font-weight:700;color:var(--hk-text);">Hakuna</span>
+            </div>
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--hk-primary-100);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--hk-primary);">IM</div>
+          </div>
+          <div style="padding:12px;text-align:center;color:var(--hk-text-muted);font-size:11px;height:80px;display:flex;align-items:center;justify-content:center;">
+            Tap hamburger → full-screen drawer slides in from left
+          </div>
+        </div>
+        <div style="flex:1;min-width:180px;padding:12px;background:var(--hk-bg-muted);border-radius:var(--hk-radius-md);">
+          <div style="font-size:12px;color:var(--hk-text-secondary);line-height:1.6;">
+            <strong>NavBar.MobileTopBar</strong> — sticky top bar with hamburger + logo + action slot<br/>
+            <strong>NavBar.Hamburger</strong> — standalone hamburger button (36×36px)<br/>
+            <strong>Mobile drawer</strong> — 280px, portal-based, ESC to close, full nav visible
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       23. SIDEBAR / DETAIL PANEL (v0.4)
        ═══════════════════════════════════════════════════════════ -->
   <div class="section">
     <div class="section-title">Sidebar / Detail Panel <span style="font-size:10px;color:var(--hk-success);font-weight:700;margin-left:8px">v0.4</span></div>
