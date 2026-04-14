@@ -21,8 +21,19 @@ jobs:
       - name: Upgrade npm (Trusted Publishing requires >=11.5.1)
         run: npm install -g npm@11.5.2 --force
 
-      - name: Publish if version changed
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          access: public
-          provenance: true
+      - name: Check if version changed
+        id: version-check
+        run: |
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          PUBLISHED_VERSION=$(npm view @hakunahq/ui version 2>/dev/null || echo "none")
+          echo "Local version: $LOCAL_VERSION"
+          echo "Published version: $PUBLISHED_VERSION"
+          if [ "$LOCAL_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm via Trusted Publishing
+        if: steps.version-check.outputs.changed == 'true'
+        run: npm publish --provenance --access public
