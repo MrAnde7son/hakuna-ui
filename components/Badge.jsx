@@ -41,18 +41,18 @@ export function SeverityBadge({ severity, label }) {
 const DEFAULT_STATUS_STYLES = {
   pending:    { bg: 'var(--hk-neutral-100)', text: 'var(--hk-neutral-600)', dot: 'var(--hk-neutral-400)' },
   running:    { bg: 'var(--hk-primary-50)',  text: 'var(--hk-primary-700)', dot: 'var(--hk-primary-500)', pulse: true },
-  active:     { bg: 'var(--hk-success-subtle)', text: '#065f46', dot: 'var(--hk-success)' },
-  done:       { bg: 'var(--hk-success-subtle)', text: '#065f46', dot: 'var(--hk-success)' },
-  completed:  { bg: 'var(--hk-success-subtle)', text: '#065f46', dot: 'var(--hk-success)' },
-  closed:     { bg: 'var(--hk-success-subtle)', text: '#065f46', dot: 'var(--hk-success)' },
-  failed:     { bg: 'var(--hk-danger-subtle)', text: '#991b1b', dot: 'var(--hk-danger)' },
-  error:      { bg: 'var(--hk-danger-subtle)', text: '#991b1b', dot: 'var(--hk-danger)' },
-  paused:     { bg: 'var(--hk-warning-subtle)', text: '#92400e', dot: 'var(--hk-warning)' },
+  active:     { bg: 'var(--hk-success-subtle)', text: 'var(--hk-success-on-subtle)', dot: 'var(--hk-success)' },
+  done:       { bg: 'var(--hk-success-subtle)', text: 'var(--hk-success-on-subtle)', dot: 'var(--hk-success)' },
+  completed:  { bg: 'var(--hk-success-subtle)', text: 'var(--hk-success-on-subtle)', dot: 'var(--hk-success)' },
+  closed:     { bg: 'var(--hk-success-subtle)', text: 'var(--hk-success-on-subtle)', dot: 'var(--hk-success)' },
+  failed:     { bg: 'var(--hk-danger-subtle)',  text: 'var(--hk-danger-on-subtle)',  dot: 'var(--hk-danger)' },
+  error:      { bg: 'var(--hk-danger-subtle)',  text: 'var(--hk-danger-on-subtle)',  dot: 'var(--hk-danger)' },
+  paused:     { bg: 'var(--hk-warning-subtle)', text: 'var(--hk-warning-on-subtle)', dot: 'var(--hk-warning)' },
   draft:      { bg: 'var(--hk-neutral-50)',  text: 'var(--hk-neutral-500)', dot: 'var(--hk-neutral-300)' },
   skipped:    { bg: 'var(--hk-neutral-50)',  text: 'var(--hk-neutral-400)', dot: 'var(--hk-neutral-300)' },
   target:     { bg: 'var(--hk-accent-50)',   text: 'var(--hk-accent-800)', dot: 'var(--hk-accent-500)' },
   contacted:  { bg: 'var(--hk-primary-50)',  text: 'var(--hk-primary-700)', dot: 'var(--hk-primary-500)' },
-  meeting:    { bg: '#f5f3ff',               text: '#5b21b6', dot: '#7c3aed' },
+  meeting:    { bg: 'var(--hk-purple-subtle)', text: 'var(--hk-purple-on-subtle)', dot: 'var(--hk-purple)' },
 }
 
 export function StatusBadge({ status, styles: customStyles, className }) {

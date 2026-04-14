@@ -1,6 +1,23 @@
-# @hakuna/ui
+# @hakunahq/ui
 
 Unified design system for the Hakuna product family: **hakuna**, **hakuna-signal**, **hakuna-fundraiser**, and **hakuna-outbound**.
+
+## What's new in 0.7.0 (breaking)
+
+- **Security components moved to `/security` subpath.** `BlastNode`, `BlastEdge`, `VendorLogo`, `VENDOR_CATALOG`, `VENDOR_CATEGORIES`, `BLAST_NODE_TYPES`, `BLAST_EDGE_TYPES` are no longer exported from the main entry. Import them from `@hakunahq/ui/security` — only `hakuna` and `hakuna-signal` need them.
+- **Icons moved to `/icons` subpath.** `lucide-react` is now an *optional* peer dependency. Products that don't use icons no longer pull in lucide's ~200KB bundle. Import icons from `@hakunahq/ui/icons`.
+- **TypeScript definitions.** The package now ships `.d.ts` files for autocomplete and type checking.
+- **Accessibility.** `Modal` now has focus trap, `role="dialog"`, `aria-modal`, and restores focus on close. `Dropdown` has arrow-key navigation and `role="menu"`/`role="menuitem"`. `Tabs` has `role="tablist"`/`role="tab"`, `aria-selected`, and ← / → / Home / End keyboard navigation. `Input`/`Select` now accept `label`, `hint`, `error` props and wire up `htmlFor` / `aria-describedby` / `aria-invalid` automatically.
+- **`forwardRef` on `Button`, `Input`, `Select`** — works with `react-hook-form` and any code that needs a DOM ref.
+- **Tokenized colors.** Hard-coded hex codes in `Avatar`, `Badge`, `Button` replaced with new tokens (`--hk-avatar-*`, `--hk-*-on-subtle`, `--hk-on-bright`, `--hk-overlay`). All tokens have matching dark-theme values.
+
+### Migration
+
+```diff
+- import { BlastNode, VendorLogo, IconShield } from '@hakunahq/ui'
++ import { BlastNode, VendorLogo } from '@hakunahq/ui/security'
++ import { IconShield } from '@hakunahq/ui/icons'
+```
 
 ## What's Inside
 

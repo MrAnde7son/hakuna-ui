@@ -1,13 +1,19 @@
 /**
- * @hakuna/ui — Unified Design System
+ * @hakunahq/ui — Unified Design System
  *
  * Shared tokens and components for the Hakuna product family:
  *   hakuna, hakuna-signal, hakuna-fundraiser, hakuna-outbound
  *
  * Quick start:
- *   import '@hakuna/ui/tokens/colors.css'
- *   import '@hakuna/ui/tokens/base.css'
- *   import { Button, Card, StatCard, SeverityBadge, LogoSymbol } from '@hakuna/ui'
+ *   import '@hakunahq/ui/tokens/colors.css'
+ *   import '@hakunahq/ui/tokens/base.css'
+ *   import { Button, Card, StatCard, SeverityBadge, LogoSymbol } from '@hakunahq/ui'
+ *
+ * Icons (opt-in, requires lucide-react peer):
+ *   import { IconShield, IconPlus } from '@hakunahq/ui/icons'
+ *
+ * Security-specific components (hakuna/hakuna-signal only):
+ *   import { BlastNode, VendorLogo } from '@hakunahq/ui/security'
  */
 
 // ── Brand ───────────────────────────────────────────────────
@@ -41,17 +47,11 @@ export { ToastProvider, useToast } from './components/Toast.jsx'
 export { ErrorBanner, ErrorBoundary } from './components/Error.jsx'
 export { SkeletonRow, SkeletonTable, SkeletonCard, SkeletonDetail } from './components/Skeleton.jsx'
 
-// ── Blast Radius ────────────────────────────────────────────
-export { BlastNode, BlastEdge, BLAST_NODE_TYPES, BLAST_EDGE_TYPES } from './components/BlastRadiusIcons.jsx'
-
-// ── Vendor / Integration Icons ──────────────────────────────
-export { VendorLogo, VENDOR_CATALOG, VENDOR_CATEGORIES } from './components/VendorLogo.jsx'
-
 // ── Responsive ──────────────────────────────────────────────
 export { useBreakpoint, useResponsiveValue } from './hooks/useBreakpoint.js'
 export { BREAKPOINTS, mq, mqMax } from './tokens/breakpoints.js'
 
-// ── Icons (re-exported from lucide-react) ───────────────────
-// Import individually: import { IconShield, IconPlus } from '@hakuna/ui'
-// NOTE: requires lucide-react as peer dependency
-export * from './components/Icons.jsx'
+// NOTE: Icons (lucide-react re-exports) are no longer part of the main
+// entry point to keep the base bundle free of the lucide-react peer dep.
+// Import them from the `/icons` subpath instead:
+//   import { IconShield, IconPlus } from '@hakunahq/ui/icons'

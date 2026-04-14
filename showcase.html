@@ -51,6 +51,21 @@
   --hk-font-mono:'DM Mono',ui-monospace,monospace;
   --hk-font-display:'Syne',ui-sans-serif,system-ui,sans-serif;
   --hk-radius-sm:6px;--hk-radius-md:10px;--hk-radius-lg:16px;--hk-radius-full:9999px;
+
+  /* v0.7.0 additions */
+  --hk-on-bright:#ffffff;
+  --hk-overlay:rgba(0,0,0,0.5);--hk-overlay-soft:rgba(0,0,0,0.35);
+  --hk-success-on-subtle:#065f46;--hk-danger-on-subtle:#991b1b;
+  --hk-warning-on-subtle:#92400e;--hk-info-on-subtle:#0369a1;
+  --hk-avatar-1-bg:#e0efff;--hk-avatar-1-fg:#0058b4;
+  --hk-avatar-2-bg:#faefd0;--hk-avatar-2-fg:#a45017;
+  --hk-avatar-3-bg:#dbeafe;--hk-avatar-3-fg:#1d4ed8;
+  --hk-avatar-4-bg:#d1fae5;--hk-avatar-4-fg:#065f46;
+  --hk-avatar-5-bg:#fef3c7;--hk-avatar-5-fg:#92400e;
+  --hk-avatar-6-bg:#ede9fe;--hk-avatar-6-fg:#5b21b6;
+  --hk-avatar-7-bg:#fce7f3;--hk-avatar-7-fg:#9d174d;
+  --hk-avatar-8-bg:#e0e7ff;--hk-avatar-8-fg:#3730a3;
+  --hk-purple-subtle:#f5f3ff;--hk-purple:#7c3aed;--hk-purple-on-subtle:#5b21b6;
 }
 
 [data-theme="dark"] {
@@ -71,6 +86,21 @@
   --hk-shadow-md:0 4px 12px rgba(0,0,0,0.4);
   --hk-shadow-lg:0 10px 40px rgba(0,0,0,0.5);
   --hk-shadow-glow:0 0 0 1px rgba(88,166,255,0.2),0 8px 24px -8px rgba(88,166,255,0.3);
+
+  /* v0.7.0 additions (dark) */
+  --hk-on-bright:#ffffff;
+  --hk-overlay:rgba(0,0,0,0.7);--hk-overlay-soft:rgba(0,0,0,0.5);
+  --hk-success-on-subtle:#86efac;--hk-danger-on-subtle:#fca5a5;
+  --hk-warning-on-subtle:#fcd34d;--hk-info-on-subtle:#7dd3fc;
+  --hk-avatar-1-bg:#06407a;--hk-avatar-1-fg:#b9dfff;
+  --hk-avatar-2-bg:#6d3418;--hk-avatar-2-fg:#f5dc9c;
+  --hk-avatar-3-bg:#1e3a8a;--hk-avatar-3-fg:#bfdbfe;
+  --hk-avatar-4-bg:#064e3b;--hk-avatar-4-fg:#a7f3d0;
+  --hk-avatar-5-bg:#78350f;--hk-avatar-5-fg:#fde68a;
+  --hk-avatar-6-bg:#4c1d95;--hk-avatar-6-fg:#ddd6fe;
+  --hk-avatar-7-bg:#831843;--hk-avatar-7-fg:#fbcfe8;
+  --hk-avatar-8-bg:#312e81;--hk-avatar-8-fg:#c7d2fe;
+  --hk-purple-subtle:#2e1065;--hk-purple:#a78bfa;--hk-purple-on-subtle:#ddd6fe;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -690,8 +720,121 @@ body {
 
   <!-- Hero -->
   <div class="hero">
-    <h1><span>@hakuna</span>/ui</h1>
+    <h1><span>@hakunahq</span>/ui</h1>
     <p>Unified design system for hakuna &middot; hakuna-signal &middot; hakuna-fundraiser &middot; hakuna-outbound</p>
+    <div style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:9999px;background:var(--hk-success-subtle);color:var(--hk-success-on-subtle);border:1px solid var(--hk-success);font-size:12px;font-weight:600;position:relative;">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--hk-success);display:inline-block;"></span>
+      v0.7.0 · breaking changes below
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ★ What's new in v0.7.0
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section" style="border:1px solid var(--hk-primary);border-radius:var(--hk-radius-lg);padding:24px;background:linear-gradient(180deg,var(--hk-primary-50),var(--hk-card));">
+    <div class="section-title" style="margin-top:0;display:flex;align-items:center;gap:8px;">
+      <span style="color:var(--hk-primary);">★</span> What's new in v0.7.0
+    </div>
+
+    <!-- Grid of changes -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-danger);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Breaking</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Security components moved</div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);margin-bottom:8px;">
+          <code style="font-family:var(--hk-font-mono);font-size:11px;">BlastNode</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">VendorLogo</code> → <code style="font-family:var(--hk-font-mono);font-size:11px;">@hakunahq/ui/security</code>. Fundraiser/outbound no longer pay for ~220KB they don't use.
+        </div>
+      </div>
+
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-danger);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Breaking</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Icons at <code style="font-family:var(--hk-font-mono);font-size:13px;">/icons</code></div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);">
+          <code style="font-family:var(--hk-font-mono);font-size:11px;">lucide-react</code> is now an <em>optional</em> peer dependency.
+        </div>
+      </div>
+
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-success);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">A11y</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Modal / Dropdown / Tabs</div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);">
+          Focus trap, ARIA roles, arrow-key navigation, focus restoration on close.
+        </div>
+      </div>
+
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-success);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">DX</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">TypeScript definitions</div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);">
+          <code style="font-family:var(--hk-font-mono);font-size:11px;">index.d.ts</code> ships with the package. Full autocomplete for every component.
+        </div>
+      </div>
+
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-success);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">DX</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;"><code style="font-family:var(--hk-font-mono);font-size:13px;">forwardRef</code> on form controls</div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);">
+          <code style="font-family:var(--hk-font-mono);font-size:11px;">Button</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">Input</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">Select</code> — now work with <code style="font-family:var(--hk-font-mono);font-size:11px;">react-hook-form</code>.
+        </div>
+      </div>
+
+      <div style="padding:16px;border:1px solid var(--hk-border);border-radius:var(--hk-radius-md);background:var(--hk-card);">
+        <div style="font-size:11px;font-weight:700;color:var(--hk-accent-600);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Tokens</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">No more raw hex</div>
+        <div style="font-size:12px;color:var(--hk-text-secondary);">
+          New <code style="font-family:var(--hk-font-mono);font-size:11px;">--hk-avatar-*</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">--hk-*-on-subtle</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">--hk-on-bright</code>, <code style="font-family:var(--hk-font-mono);font-size:11px;">--hk-overlay</code>. All have dark-mode values.
+        </div>
+      </div>
+    </div>
+
+    <!-- Migration diff -->
+    <div style="font-size:12px;font-weight:700;color:var(--hk-text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;">Migration</div>
+    <pre style="background:var(--hk-bg-subtle);border:1px solid var(--hk-border);border-radius:var(--hk-radius-sm);padding:12px 16px;font-family:var(--hk-font-mono);font-size:12px;line-height:1.6;overflow-x:auto;margin-bottom:24px;"><span style="color:var(--hk-danger);">- import { BlastNode, VendorLogo, IconShield } from '@hakunahq/ui'</span>
+<span style="color:var(--hk-success);">+ import { BlastNode, VendorLogo } from '@hakunahq/ui/security'</span>
+<span style="color:var(--hk-success);">+ import { IconShield } from '@hakunahq/ui/icons'</span></pre>
+
+    <!-- Live demos of new stuff -->
+    <div style="font-size:12px;font-weight:700;color:var(--hk-text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em;">New token: Avatar palette</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-1-bg);color:var(--hk-avatar-1-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">IM</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-2-bg);color:var(--hk-avatar-2-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">SK</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-3-bg);color:var(--hk-avatar-3-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">AH</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-4-bg);color:var(--hk-avatar-4-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">DC</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-5-bg);color:var(--hk-avatar-5-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">LM</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-6-bg);color:var(--hk-avatar-6-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">PO</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-7-bg);color:var(--hk-avatar-7-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">RN</div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--hk-avatar-8-bg);color:var(--hk-avatar-8-fg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">TB</div>
+    </div>
+
+    <div style="font-size:12px;font-weight:700;color:var(--hk-text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em;">New input props: label · hint · error</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:8px;">
+      <div>
+        <label for="demo-new-email" style="display:block;font-size:12px;font-weight:600;color:var(--hk-text-secondary);margin-bottom:4px;">Email</label>
+        <input id="demo-new-email" class="hk-input" value="me@hakuna.co" aria-describedby="demo-new-email-hint" />
+        <div id="demo-new-email-hint" style="font-size:11px;color:var(--hk-text-muted);margin-top:4px;">We'll never share this.</div>
+      </div>
+      <div>
+        <label for="demo-new-handle" style="display:block;font-size:12px;font-weight:600;color:var(--hk-text-secondary);margin-bottom:4px;">Handle</label>
+        <input id="demo-new-handle" class="hk-input" value="admin" style="border-color:var(--hk-danger);" aria-invalid="true" aria-describedby="demo-new-handle-err" />
+        <div id="demo-new-handle-err" role="alert" style="font-size:11px;color:var(--hk-danger);margin-top:4px;">Reserved handle — pick another.</div>
+      </div>
+      <div>
+        <label for="demo-new-role" style="display:block;font-size:12px;font-weight:600;color:var(--hk-text-secondary);margin-bottom:4px;">Role</label>
+        <select id="demo-new-role" class="hk-input" style="cursor:pointer;">
+          <option>Founder</option><option>Investor</option><option>Advisor</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="font-size:12px;font-weight:700;color:var(--hk-text-secondary);margin:24px 0 12px;text-transform:uppercase;letter-spacing:0.05em;">New tokens: on-subtle text · purple · overlay</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;background:var(--hk-success-subtle);color:var(--hk-success-on-subtle);font-size:11px;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:var(--hk-success);"></span>active</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;background:var(--hk-danger-subtle);color:var(--hk-danger-on-subtle);font-size:11px;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:var(--hk-danger);"></span>failed</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;background:var(--hk-warning-subtle);color:var(--hk-warning-on-subtle);font-size:11px;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:var(--hk-warning);"></span>paused</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;background:var(--hk-info-subtle);color:var(--hk-info-on-subtle);font-size:11px;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:var(--hk-info);"></span>info</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;background:var(--hk-purple-subtle);color:var(--hk-purple-on-subtle);font-size:11px;font-weight:600;"><span style="width:6px;height:6px;border-radius:50%;background:var(--hk-purple);"></span>meeting</span>
+    </div>
+    <div style="font-size:11px;color:var(--hk-text-muted);">Toggle dark mode (top-right) — all "on-subtle" text flips to light variants automatically.</div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════

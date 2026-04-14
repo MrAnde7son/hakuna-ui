@@ -126,6 +126,35 @@
   --hk-radius-md: 10px;
   --hk-radius-lg: 16px;
   --hk-radius-full: 9999px;
+
+  /* ── Status "on-subtle" text (legible on *-subtle backgrounds) ── */
+  --hk-success-on-subtle: #065f46;
+  --hk-danger-on-subtle:  #991b1b;
+  --hk-warning-on-subtle: #92400e;
+  --hk-info-on-subtle:    #0369a1;
+
+  /* ── "On-bright" text (legible on saturated status backgrounds;
+        stays white in both themes since the swatches stay bright). ── */
+  --hk-on-bright: #ffffff;
+
+  /* ── Overlay scrim (behind modals / drawers) ──────────────── */
+  --hk-overlay: rgba(0, 0, 0, 0.5);
+  --hk-overlay-soft: rgba(0, 0, 0, 0.35);
+
+  /* ── Avatar deterministic palette ─────────────────────────── */
+  --hk-avatar-1-bg: var(--hk-primary-100); --hk-avatar-1-fg: var(--hk-primary-700);
+  --hk-avatar-2-bg: var(--hk-accent-100);  --hk-avatar-2-fg: var(--hk-accent-700);
+  --hk-avatar-3-bg: #dbeafe;               --hk-avatar-3-fg: #1d4ed8;
+  --hk-avatar-4-bg: #d1fae5;               --hk-avatar-4-fg: #065f46;
+  --hk-avatar-5-bg: #fef3c7;               --hk-avatar-5-fg: #92400e;
+  --hk-avatar-6-bg: #ede9fe;               --hk-avatar-6-fg: #5b21b6;
+  --hk-avatar-7-bg: #fce7f3;               --hk-avatar-7-fg: #9d174d;
+  --hk-avatar-8-bg: #e0e7ff;               --hk-avatar-8-fg: #3730a3;
+
+  /* ── Accent: purple (e.g. "meeting" status) ──────────────── */
+  --hk-purple-subtle: #f5f3ff;
+  --hk-purple:        #7c3aed;
+  --hk-purple-on-subtle: #5b21b6;
 }
 
 /* ── Dark theme ─────────────────────────────────────────────── */
@@ -186,4 +215,29 @@
   --hk-shadow-xl:    0 20px 60px -12px rgba(0, 0, 0, 0.6);
   --hk-shadow-glow:  0 0 0 1px rgba(88, 166, 255, 0.2), 0 8px 24px -8px rgba(88, 166, 255, 0.3);
   --hk-shadow-focus: 0 0 0 2px var(--hk-bg), 0 0 0 4px var(--hk-ring);
+
+  /* ── Overlay scrim (dark theme — slightly stronger) ───────── */
+  --hk-overlay: rgba(0, 0, 0, 0.7);
+  --hk-overlay-soft: rgba(0, 0, 0, 0.5);
+
+  /* ── Status "on-subtle" text (legible on dark *-subtle backgrounds) ── */
+  --hk-success-on-subtle: #86efac;
+  --hk-danger-on-subtle:  #fca5a5;
+  --hk-warning-on-subtle: #fcd34d;
+  --hk-info-on-subtle:    #7dd3fc;
+
+  /* ── Avatar deterministic palette (dark) ─────────────────── */
+  --hk-avatar-1-bg: var(--hk-primary-900); --hk-avatar-1-fg: var(--hk-primary-200);
+  --hk-avatar-2-bg: var(--hk-accent-900);  --hk-avatar-2-fg: var(--hk-accent-200);
+  --hk-avatar-3-bg: #1e3a8a;               --hk-avatar-3-fg: #bfdbfe;
+  --hk-avatar-4-bg: #064e3b;               --hk-avatar-4-fg: #a7f3d0;
+  --hk-avatar-5-bg: #78350f;               --hk-avatar-5-fg: #fde68a;
+  --hk-avatar-6-bg: #4c1d95;               --hk-avatar-6-fg: #ddd6fe;
+  --hk-avatar-7-bg: #831843;               --hk-avatar-7-fg: #fbcfe8;
+  --hk-avatar-8-bg: #312e81;               --hk-avatar-8-fg: #c7d2fe;
+
+  /* ── Accent: purple (dark) ───────────────────────────────── */
+  --hk-purple-subtle: #2e1065;
+  --hk-purple:        #a78bfa;
+  --hk-purple-on-subtle: #ddd6fe;
 }

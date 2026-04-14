@@ -11,14 +11,14 @@
 import React from 'react'
 
 const AVATAR_COLORS = [
-  { bg: 'var(--hk-primary-100)', text: 'var(--hk-primary-700)' },
-  { bg: 'var(--hk-accent-100)',  text: 'var(--hk-accent-700)' },
-  { bg: '#dbeafe',               text: '#1d4ed8' },
-  { bg: '#d1fae5',               text: '#065f46' },
-  { bg: '#fef3c7',               text: '#92400e' },
-  { bg: '#ede9fe',               text: '#5b21b6' },
-  { bg: '#fce7f3',               text: '#9d174d' },
-  { bg: '#e0e7ff',               text: '#3730a3' },
+  { bg: 'var(--hk-avatar-1-bg)', text: 'var(--hk-avatar-1-fg)' },
+  { bg: 'var(--hk-avatar-2-bg)', text: 'var(--hk-avatar-2-fg)' },
+  { bg: 'var(--hk-avatar-3-bg)', text: 'var(--hk-avatar-3-fg)' },
+  { bg: 'var(--hk-avatar-4-bg)', text: 'var(--hk-avatar-4-fg)' },
+  { bg: 'var(--hk-avatar-5-bg)', text: 'var(--hk-avatar-5-fg)' },
+  { bg: 'var(--hk-avatar-6-bg)', text: 'var(--hk-avatar-6-fg)' },
+  { bg: 'var(--hk-avatar-7-bg)', text: 'var(--hk-avatar-7-fg)' },
+  { bg: 'var(--hk-avatar-8-bg)', text: 'var(--hk-avatar-8-fg)' },
 ]
 
 function hashName(name) {

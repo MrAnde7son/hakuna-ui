@@ -50,6 +50,20 @@ h1, h2, h3, h4 {
   background: var(--hk-neutral-300);
 }
 
+/* ── Card component ─────────────────────────────────────────── */
+.hk-card {
+  background: var(--hk-card);
+  border: 1px solid var(--hk-border);
+  border-radius: var(--hk-radius-md);
+  box-shadow: var(--hk-shadow-sm);
+}
+.hk-card-hover {
+  transition: box-shadow 0.15s;
+}
+.hk-card-hover:hover {
+  box-shadow: var(--hk-shadow-md);
+}
+
 /* ── Utility classes ────────────────────────────────────────── */
 .hk-font-display { font-family: var(--hk-font-display); letter-spacing: -0.02em; }
 .hk-font-mono    { font-family: var(--hk-font-mono); }

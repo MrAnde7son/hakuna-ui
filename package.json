@@ -1,12 +1,31 @@
 {
   "name": "@hakunahq/ui",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Unified design system for the Hakuna product family",
   "type": "module",
   "main": "./index.js",
   "module": "./index.js",
+  "types": "./index.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
-    ".": "./index.js",
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./icons": {
+      "types": "./icons.d.ts",
+      "import": "./icons.js",
+      "default": "./icons.js"
+    },
+    "./security": {
+      "types": "./security.d.ts",
+      "import": "./security.js",
+      "default": "./security.js"
+    },
     "./tokens/colors.css": "./tokens/colors.css",
     "./tokens/base.css": "./tokens/base.css",
     "./tokens/tailwind-preset": "./tokens/tailwind-preset.js",
@@ -17,6 +36,11 @@
   },
   "files": [
     "index.js",
+    "index.d.ts",
+    "icons.js",
+    "icons.d.ts",
+    "security.js",
+    "security.d.ts",
     "tokens/",
     "hooks/",
     "components/",
@@ -26,6 +50,11 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
     "lucide-react": ">=0.300.0"
+  },
+  "peerDependenciesMeta": {
+    "lucide-react": {
+      "optional": true
+    }
   },
   "keywords": [
     "hakuna",
