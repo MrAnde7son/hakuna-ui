@@ -40,6 +40,7 @@ export { Avatar } from './components/Avatar.jsx'
 // ── Form Controls ───────────────────────────────────────────
 export { Button } from './components/Button.jsx'
 export { Input, Select } from './components/Input.jsx'
+export { Checkbox } from './components/Checkbox.jsx'
 export { Dropdown, Popover } from './components/Dropdown.jsx'
 
 // ── Feedback ────────────────────────────────────────────────

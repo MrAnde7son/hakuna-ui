@@ -134,6 +134,14 @@ export interface NavBarProps extends WithClassName {
   footer?: React.ReactNode
   header?: React.ReactNode
   variant?: 'default' | 'dark'
+  /**
+   * Controlled mobile-drawer state. When provided, the parent owns
+   * whether the mobile drawer is open and must update the value in
+   * response to `onMobileOpenChange`. Leave undefined for the default
+   * uncontrolled behaviour.
+   */
+  mobileOpen?: boolean
+  onMobileOpenChange?: (open: boolean) => void
 }
 export const NavBar: React.FC<NavBarProps>
 
@@ -258,6 +266,10 @@ export const Button: React.ForwardRefExoticComponent<
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  /** Render a <textarea> instead of <input>. */
+  multiline?: boolean
+  /** Initial visible rows when `multiline` is true. */
+  rows?: number
   label?: React.ReactNode
   hint?: React.ReactNode
   error?: React.ReactNode
@@ -279,6 +291,21 @@ export interface SelectProps
 }
 export const Select: React.ForwardRefExoticComponent<
   SelectProps & React.RefAttributes<HTMLSelectElement>
+>
+
+// ── Checkbox ─────────────────────────────────────────────────
+export interface CheckboxProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size' | 'type'> {
+  checked?: boolean
+  indeterminate?: boolean
+  onChange?: (checked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void
+  disabled?: boolean
+  label?: React.ReactNode
+  size?: 'sm' | 'md'
+  ariaLabel?: string
+}
+export const Checkbox: React.ForwardRefExoticComponent<
+  CheckboxProps & React.RefAttributes<HTMLInputElement>
 >
 
 // ── Dropdown / Popover ───────────────────────────────────────

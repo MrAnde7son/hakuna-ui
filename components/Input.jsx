@@ -45,34 +45,50 @@ function useFieldIds(providedId) {
 }
 
 export const Input = forwardRef(function Input(
-  { value, onChange, placeholder, label, hint, error, id, className, style = {}, ...props },
+  {
+    value, onChange, placeholder, label, hint, error, id,
+    // `multiline` renders a <textarea> instead of <input>. `rows` sets the
+    // initial visible rows. Useful for longer-form fields like descriptions.
+    multiline = false, rows = 4,
+    className, style = {}, ...props
+  },
   ref
 ) {
   const { id: fieldId, hintId, errorId } = useFieldIds(id)
   const describedBy = [hint && hintId, error && errorId].filter(Boolean).join(' ') || undefined
 
+  const sharedProps = {
+    ref,
+    id: fieldId,
+    value,
+    placeholder,
+    'aria-invalid': error ? true : undefined,
+    'aria-describedby': describedBy,
+    style: {
+      ...INPUT_BASE,
+      ...(multiline && { padding: '10px 12px', resize: 'vertical', lineHeight: 1.5, fontFamily: 'var(--hk-font-sans)' }),
+      ...(error && { borderColor: 'var(--hk-danger)' }),
+      ...style,
+    },
+    onFocus: e => {
+      e.currentTarget.style.borderColor = error ? 'var(--hk-danger)' : 'var(--hk-primary)'
+      e.currentTarget.style.boxShadow = '0 0 0 3px var(--hk-ring)'
+    },
+    onBlur: e => {
+      e.currentTarget.style.borderColor = error ? 'var(--hk-danger)' : 'var(--hk-border)'
+      e.currentTarget.style.boxShadow = 'none'
+    },
+    onChange: e => onChange?.(e.target.value, e),
+    ...props,
+  }
+
   return (
     <div className={className}>
       {label && <label htmlFor={fieldId} style={LABEL_STYLE}>{label}</label>}
-      <input
-        ref={ref}
-        id={fieldId}
-        value={value}
-        onChange={e => onChange?.(e.target.value, e)}
-        placeholder={placeholder}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={describedBy}
-        style={{ ...INPUT_BASE, ...(error && { borderColor: 'var(--hk-danger)' }), ...style }}
-        onFocus={e => {
-          e.currentTarget.style.borderColor = error ? 'var(--hk-danger)' : 'var(--hk-primary)'
-          e.currentTarget.style.boxShadow = '0 0 0 3px var(--hk-ring)'
-        }}
-        onBlur={e => {
-          e.currentTarget.style.borderColor = error ? 'var(--hk-danger)' : 'var(--hk-border)'
-          e.currentTarget.style.boxShadow = 'none'
-        }}
-        {...props}
-      />
+      {multiline
+        ? <textarea rows={rows} {...sharedProps} />
+        : <input {...sharedProps} />
+      }
       {hint && !error && <div id={hintId} style={HINT_STYLE}>{hint}</div>}
       {error && <div id={errorId} role="alert" style={ERROR_STYLE}>{error}</div>}
     </div>

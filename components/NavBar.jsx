@@ -249,14 +249,29 @@ export function NavBar({
   header,
   className,
   variant = 'default', // 'default' | 'dark'
+  // Controlled mobile-drawer state. When `mobileOpen` is a boolean,
+  // the NavBar treats the parent as the source of truth and calls
+  // `onMobileOpenChange(next)` on open/close. Leave both undefined
+  // for the default uncontrolled behaviour (NavBar manages its own
+  // state and pairs with its internal hamburger).
+  mobileOpen: controlledMobileOpen,
+  onMobileOpenChange,
 }) {
   const bp = useBreakpoint()
   const [collapsed, setCollapsed] = useState(defaultCollapsed)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [uncontrolledMobileOpen, setUncontrolledMobileOpen] = useState(false)
+
+  const isMobileControlled = controlledMobileOpen !== undefined
+  const mobileOpen = isMobileControlled ? controlledMobileOpen : uncontrolledMobileOpen
+  const setMobileOpen = (next) => {
+    if (isMobileControlled) onMobileOpenChange?.(next)
+    else setUncontrolledMobileOpen(next)
+  }
 
   // Close mobile drawer when switching to desktop
   useEffect(() => {
-    if (bp.md) setMobileOpen(false)
+    if (bp.md && mobileOpen) setMobileOpen(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bp.md])
 
   const isCollapsed = collapsible && collapsed && bp.md

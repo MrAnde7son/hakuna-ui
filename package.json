@@ -1,6 +1,6 @@
 {
   "name": "@hakunahq/ui",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Unified design system for the Hakuna product family",
   "type": "module",
   "main": "./index.js",
