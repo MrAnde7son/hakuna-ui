@@ -65,6 +65,14 @@
   ],
   "author": "Hakuna HQ",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrAnde7son/hakuna-ui.git"
+  },
+  "homepage": "https://github.com/MrAnde7son/hakuna-ui#readme",
+  "bugs": {
+    "url": "https://github.com/MrAnde7son/hakuna-ui/issues"
+  },
   "publishConfig": {
     "access": "public"
   }
